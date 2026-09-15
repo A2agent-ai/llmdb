@@ -4,7 +4,6 @@ defmodule LLMDB.Catalog do
   @store_key :llm_db_store
   @load_resource {__MODULE__, :load}
   @provider_aliases %{google_vertex_anthropic: :google_vertex}
-  @bedrock_prefixes ~w(us. eu. ap. apac. ca. au. jp. us-gov. global.)
 
   @typedoc false
   @type t :: map()
@@ -223,27 +222,35 @@ defmodule LLMDB.Catalog do
 
   def resolve_model(catalog, provider_id, model_id)
       when is_map(catalog) and is_atom(provider_id) and is_binary(model_id) do
-    {lookup_id, prefix} = strip_prefix(provider_id, model_id)
+    prefixes = Map.get(prefix_rules(catalog), provider_id, [])
 
     result =
-      catalog
-      |> provider_lookup_ids(provider_id)
-      |> Enum.find_value(fn actual_provider ->
-        case fetch_model(catalog, actual_provider, lookup_id) do
-          nil -> nil
-          {canonical_id, model} -> {actual_provider, canonical_id, model}
-        end
+      LLMDB.ModelResolver.resolve_model(model_id, prefixes, fn lookup_id, mode ->
+        lookup_model(catalog, provider_id, lookup_id, mode)
       end)
 
     case result do
-      nil ->
-        {:error, :not_found}
+      {:ok, {actual_provider, canonical_id, model}} ->
+        {:ok,
+         {provider_id, canonical_id, normalize_provider(model, actual_provider, provider_id)}}
 
-      {actual_provider, canonical_id, model} ->
-        returned_id = if prefix, do: prefix <> canonical_id, else: canonical_id
-        model = normalize_provider(model, actual_provider, provider_id)
-        {:ok, {provider_id, returned_id, model}}
+      {:error, :not_found} = error ->
+        error
     end
+  end
+
+  defp lookup_model(catalog, provider_id, lookup_id, mode) do
+    catalog
+    |> provider_lookup_ids(provider_id)
+    |> Enum.find_value(fn actual_provider ->
+      case fetch_model(catalog, actual_provider, lookup_id, mode) do
+        nil ->
+          nil
+
+        {canonical_id, model} ->
+          {actual_provider, canonical_id, model}
+      end
+    end)
   end
 
   @spec resolve_bare(t() | nil, String.t()) ::
@@ -251,38 +258,13 @@ defmodule LLMDB.Catalog do
   def resolve_bare(nil, _model_id), do: {:error, :not_found}
 
   def resolve_bare(catalog, model_id) when is_map(catalog) and is_binary(model_id) do
-    {bedrock_id, bedrock_prefix} = strip_prefix(:amazon_bedrock, model_id)
+    direct = Map.get(resolutions_by_model_id(catalog), model_id, [])
 
-    direct =
-      catalog
-      |> resolutions_by_model_id()
-      |> Map.get(model_id, [])
-      |> maybe_reject_prefixed_bedrock(bedrock_prefix)
-
-    prefixed_bedrock =
-      if bedrock_prefix do
-        catalog
-        |> resolutions_by_model_id()
-        |> Map.get(bedrock_id, [])
-        |> Enum.filter(fn {provider, _canonical_id, _model} ->
-          provider == :amazon_bedrock
-        end)
-        |> Enum.map(fn {provider, canonical_id, model} ->
-          {provider, bedrock_prefix <> canonical_id, model}
-        end)
-      else
-        []
-      end
-
-    matches =
-      (direct ++ prefixed_bedrock)
-      |> Enum.uniq_by(fn {provider, canonical_id, _model} -> {provider, canonical_id} end)
-
-    case matches do
-      [] -> {:error, :not_found}
-      [match] -> {:ok, match}
-      [_ | _] -> {:error, :ambiguous}
+    lookup = fn provider_id, lookup_id, mode ->
+      lookup_model(catalog, provider_id, lookup_id, mode)
     end
+
+    LLMDB.ModelResolver.resolve_bare(model_id, direct, prefix_rules(catalog), lookup)
   end
 
   @spec resolve_bare(String.t()) ::
@@ -293,18 +275,22 @@ defmodule LLMDB.Catalog do
   end
 
   @spec strip_prefix(atom(), String.t()) :: {String.t(), String.t() | nil}
-  def strip_prefix(:amazon_bedrock, model_id) when is_binary(model_id) do
-    case Enum.find_value(@bedrock_prefixes, fn prefix ->
-           if String.starts_with?(model_id, prefix) do
-             {String.replace_prefix(model_id, prefix, ""), prefix}
-           end
-         end) do
-      nil -> {model_id, nil}
-      result -> result
-    end
+  def strip_prefix(provider_id, model_id) when is_binary(model_id) do
+    prefixes = Map.get(prefix_rules(snapshot() || %{}), provider_id, [])
+    LLMDB.ModelResolver.strip_prefix(model_id, prefixes)
   end
 
-  def strip_prefix(_provider, model_id) when is_binary(model_id), do: {model_id, nil}
+  defp prefix_rules(%{__llm_db_model_id_prefixes__: rules}) when is_map(rules), do: rules
+
+  defp prefix_rules(catalog) do
+    provider_metadata =
+      case Map.get(catalog, :providers_by_id) do
+        providers when is_map(providers) -> Map.values(providers)
+        _other -> providers(catalog)
+      end
+
+    LLMDB.ModelResolver.prefix_rules(provider_metadata)
+  end
 
   @spec prefer(t() | nil) :: [atom()]
   def prefer(%{prefer: prefer}) when is_list(prefer), do: prefer
@@ -336,7 +322,8 @@ defmodule LLMDB.Catalog do
   defp put_resolution_indexes(catalog, models) do
     Map.merge(catalog, %{
       __llm_db_provider_lookup_ids__: index_provider_lookup_ids(catalog.providers),
-      __llm_db_resolutions_by_model_id__: index_resolutions(models)
+      __llm_db_resolutions_by_model_id__: index_resolutions(models),
+      __llm_db_model_id_prefixes__: LLMDB.ModelResolver.prefix_rules(catalog.providers)
     })
   end
 
@@ -420,14 +407,6 @@ defmodule LLMDB.Catalog do
     end)
   end
 
-  defp maybe_reject_prefixed_bedrock(resolutions, nil), do: resolutions
-
-  defp maybe_reject_prefixed_bedrock(resolutions, _prefix) do
-    Enum.reject(resolutions, fn {provider, _canonical_id, _model} ->
-      provider == :amazon_bedrock
-    end)
-  end
-
   defp provider_lookup_ids(catalog, provider_id) do
     catalog
     |> provider_lookup_index()
@@ -462,9 +441,11 @@ defmodule LLMDB.Catalog do
     index_resolutions(models)
   end
 
-  defp fetch_model(catalog, provider, lookup_id) do
+  defp fetch_model(catalog, provider, lookup_id, mode) do
     key = {provider, lookup_id}
-    canonical_id = Map.get(catalog.aliases_by_key, key, lookup_id)
+
+    canonical_id =
+      if mode == :canonical, do: lookup_id, else: Map.get(catalog.aliases_by_key, key, lookup_id)
 
     case Map.get(catalog.models_by_key, {provider, canonical_id}) do
       nil -> nil

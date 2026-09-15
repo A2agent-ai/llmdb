@@ -20,14 +20,15 @@ defmodule LLMDB.Spec do
   ## Amazon Bedrock Inference Profiles
 
   For Amazon Bedrock models, inference profile IDs with region prefixes (us., eu., ap., apac., ca.,
-  au., jp., us-gov., global.) are supported. The region prefix is stripped for catalog lookup but
-  preserved in the returned model ID. For example:
+  au., jp., us-gov., global.) are supported. A regional catalog entry supplies its own metadata
+  and pricing. If no regional entry exists, lookup can use an alias or the base model, while
+  preserving the region prefix in the returned model ID. For example:
 
       iex> LLMDB.Spec.resolve("amazon_bedrock:us.anthropic.claude-opus-4-1-20250805-v1:0")
       {:ok, {:amazon_bedrock, "us.anthropic.claude-opus-4-1-20250805-v1:0", %LLMDB.Model{}}}
 
-  The lookup uses "anthropic.claude-opus-4-1-20250805-v1:0" to find metadata, but the returned
-  model ID retains the "us." prefix for API routing purposes.
+  When the catalog has only the base entry "anthropic.claude-opus-4-1-20250805-v1:0", the lookup
+  uses its metadata, but the returned model ID retains the "us." prefix for API routing purposes.
   """
 
   alias LLMDB.{Catalog, Normalize}
@@ -482,13 +483,12 @@ defmodule LLMDB.Spec do
   end
 
   @doc """
-  Strips any inference profile prefix from a model ID.
+  Splits a declared provider prefix from a model ID.
 
-  For Amazon Bedrock, splits prefixes like `"us."`, `"eu."`, `"au."` etc. from the model ID
-  so the base ID can be used for catalog lookup. Returns `{base_id, prefix}` where prefix
-  is `nil` if no prefix was found.
-
-  For other providers, returns `{model_id, nil}` unchanged.
+  Uses the provider's `extra.model_id_prefixes` metadata from the loaded catalog.
+  Amazon Bedrock retains its compatibility defaults when no override is declared.
+  Returns `{base_id, prefix}` using the longest matching prefix. If the provider
+  has no prefix rules or none matches, returns `{model_id, nil}` unchanged.
   """
   @spec strip_prefix(atom(), String.t()) :: {String.t(), String.t() | nil}
   defdelegate strip_prefix(provider, model_id), to: Catalog
