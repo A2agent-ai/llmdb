@@ -7,6 +7,21 @@ This project uses [Calendar Versioning](https://calver.org/) with the format `YY
 
 <!-- changelog -->
 
+## [2026.9.2](https://github.com/agentjido/llmdb/compare/2026.9.1...2026.9.2) (2026-09-15)
+
+
+
+
+### Bug Fixes:
+
+* catalog: resolve prefixed model IDs with provider prefix rules (#326) by Yannis Weishaupt
+
+* deps: update usage_rules to 1.2.8 (#325) by mikehostetler
+
+* deps: update igniter to 0.8.4 (#324) by mikehostetler
+
+* deps: update Mint to 1.10.0 by mikehostetler
+
 ## [2026.9.1](https://github.com/agentjido/llmdb/compare/2026.9.0...2026.9.1) (2026-09-03)
 
 
