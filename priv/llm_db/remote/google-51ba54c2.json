@@ -652,8 +652,20 @@
     {
       "description": "Preview release of Antigravity Agent (05-2026)",
       "displayName": "Antigravity Agent Preview",
-      "inputTokenLimit": 131072,
+      "inputTokenLimit": 1048576,
       "name": "models/antigravity-preview-05-2026",
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "version": "0.1"
+    },
+    {
+      "description": "Preview release of Antigravity Agent (09-2026)",
+      "displayName": "Antigravity Agent Preview",
+      "inputTokenLimit": 1048576,
+      "name": "models/antigravity-preview-09-2026",
       "outputTokenLimit": 65536,
       "supportedGenerationMethods": [
         "generateContent",

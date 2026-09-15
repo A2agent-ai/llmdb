@@ -2,6 +2,208 @@
   "data": [
     {
       "capabilities": {
+        "reasoning": false
+      },
+      "context_length": 262144,
+      "created": 1789364855,
+      "display_name": "Atria: Atria Dawn Preview (Free)",
+      "id": "atria-asi/atria-dawn-preview",
+      "input_modalities": [
+        "text"
+      ],
+      "object": "model",
+      "output_modalities": [
+        "text"
+      ],
+      "owned_by": "atria-asi",
+      "pricings": {
+        "completion": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0
+          }
+        ],
+        "input_cache_read": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0
+          }
+        ],
+        "input_cache_write": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0
+          }
+        ],
+        "prompt": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0
+          }
+        ]
+      },
+      "publish_time": "2026-09-14"
+    },
+    {
+      "capabilities": {
+        "reasoning": true
+      },
+      "context_length": 1048576,
+      "created": 1789379421,
+      "display_name": "MoonshotAI: Kimi K2.8 Preview",
+      "id": "moonshotai/kimi-k2.8-preview",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "object": "model",
+      "output_modalities": [
+        "text"
+      ],
+      "owned_by": "moonshotai",
+      "pricings": {
+        "completion": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 4
+          }
+        ],
+        "input_cache_read": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.25
+          }
+        ],
+        "prompt": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.97
+          }
+        ],
+        "web_search": [
+          {
+            "currency": "USD",
+            "unit": "perCount",
+            "value": 0.005
+          }
+        ]
+      },
+      "publish_time": "2026-09-14"
+    },
+    {
+      "capabilities": {
+        "reasoning": true
+      },
+      "context_length": 1000000,
+      "created": 1789112624,
+      "display_name": "SakanaAI:Fugu Ultra v2",
+      "id": "sakana/fugu-ultra-v2",
+      "input_modalities": [
+        "text",
+        "image",
+        "file"
+      ],
+      "object": "model",
+      "output_modalities": [
+        "text"
+      ],
+      "owned_by": "sakana",
+      "pricings": {
+        "completion": [
+          {
+            "conditions": {
+              "prompt_tokens": {
+                "gte": 0,
+                "lt": 272,
+                "unit": "kTokens"
+              }
+            },
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 30
+          },
+          {
+            "conditions": {
+              "prompt_tokens": {
+                "gte": 272,
+                "unit": "kTokens"
+              }
+            },
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 45
+          }
+        ],
+        "input_cache_read": [
+          {
+            "conditions": {
+              "prompt_tokens": {
+                "gte": 0,
+                "lt": 272,
+                "unit": "kTokens"
+              }
+            },
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.5
+          },
+          {
+            "conditions": {
+              "prompt_tokens": {
+                "gte": 272,
+                "unit": "kTokens"
+              }
+            },
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 1
+          }
+        ],
+        "prompt": [
+          {
+            "conditions": {
+              "prompt_tokens": {
+                "gte": 0,
+                "lt": 272,
+                "unit": "kTokens"
+              }
+            },
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 5
+          },
+          {
+            "conditions": {
+              "prompt_tokens": {
+                "gte": 272,
+                "unit": "kTokens"
+              }
+            },
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 10
+          }
+        ],
+        "web_search": [
+          {
+            "currency": "USD",
+            "unit": "perCount",
+            "value": 0.007
+          }
+        ]
+      },
+      "publish_time": "2026-09-11"
+    },
+    {
+      "capabilities": {
         "reasoning": true
       },
       "context_length": 1000000,
@@ -22,7 +224,22 @@
           {
             "currency": "USD",
             "unit": "perMTokens",
-            "value": 0.6
+            "value": 0.3
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.3
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.3
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.3
           },
           {
             "currency": "USD",
@@ -33,28 +250,28 @@
             "currency": "USD",
             "unit": "perMTokens",
             "value": 0.6
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.6
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 1.2
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 1.2
           }
         ],
         "input_cache_read": [
           {
             "currency": "USD",
             "unit": "perMTokens",
-            "value": 0.003
+            "value": 0.0015
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.0015
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.0015
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.0015
           },
           {
             "currency": "USD",
@@ -65,28 +282,28 @@
             "currency": "USD",
             "unit": "perMTokens",
             "value": 0.003
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.003
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.006
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.006
           }
         ],
         "prompt": [
           {
             "currency": "USD",
             "unit": "perMTokens",
-            "value": 0.15
+            "value": 0.075
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.075
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.075
+          },
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.075
           },
           {
             "currency": "USD",
@@ -97,21 +314,6 @@
             "currency": "USD",
             "unit": "perMTokens",
             "value": 0.15
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.15
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.3
-          },
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.3
           }
         ]
       },
@@ -960,48 +1162,6 @@
       ],
       "owned_by": "deepseek",
       "publish_time": "2026-08-21"
-    },
-    {
-      "capabilities": {
-        "reasoning": true
-      },
-      "context_length": 256000,
-      "created": 1787207684,
-      "display_name": "Nex AGI: Nex-N2-Pro",
-      "id": "nex-agi/nex-n2-pro",
-      "input_modalities": [
-        "text",
-        "image"
-      ],
-      "object": "model",
-      "output_modalities": [
-        "text"
-      ],
-      "owned_by": "nex-agi",
-      "pricings": {
-        "completion": [
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 2.5
-          }
-        ],
-        "input_cache_read": [
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.25
-          }
-        ],
-        "prompt": [
-          {
-            "currency": "USD",
-            "unit": "perMTokens",
-            "value": 0.5
-          }
-        ]
-      },
-      "publish_time": "2026-08-20"
     },
     {
       "capabilities": {
