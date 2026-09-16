@@ -895,6 +895,37 @@
       "version": "3.1-flash-live-03-2026"
     },
     {
+      "description": "Gemini 3.8 Live",
+      "displayName": "Gemini 3.8 Live",
+      "inputTokenLimit": 131072,
+      "maxTemperature": 2,
+      "name": "models/gemini-3.8-live",
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "bidiGenerateContent"
+      ],
+      "temperature": 1,
+      "topK": 64,
+      "topP": 0.95,
+      "version": "3.1-flash-live-03-2026"
+    },
+    {
+      "description": "Gemini 3.8 Live Extended Thinking",
+      "displayName": "Gemini 3.8 Live Extended Thinking",
+      "inputTokenLimit": 131072,
+      "maxTemperature": 2,
+      "name": "models/gemini-3.8-live-extended-thinking",
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "bidiGenerateContent"
+      ],
+      "temperature": 1,
+      "thinking": true,
+      "topK": 64,
+      "topP": 0.95,
+      "version": "3.1-flash-live-03-2026"
+    },
+    {
       "description": "Gemini Robotics-ER 2 Streaming Preview",
       "displayName": "Gemini Robotics-ER 2 Streaming Preview",
       "inputTokenLimit": 131072,

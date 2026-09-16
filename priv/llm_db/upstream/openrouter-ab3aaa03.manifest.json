@@ -1,8 +1,8 @@
 {
   "last_modified": null,
   "source_url": "https://openrouter.ai/api/v1/models?output_modalities=all",
-  "sha256": "9a90e9a550759ab3fa402869bb92b498cd70a4414681e6ca4ced71b6106137c5",
+  "sha256": "36a5d8ff4960e2091cafcd4af5655dcfdbb2186b81ac7753bc6c3c4e7b38a9d5",
   "etag": null,
-  "downloaded_at": "2026-09-15T04:30:31.947184Z",
-  "size_bytes": 1390985
+  "downloaded_at": "2026-09-16T04:26:20.168165Z",
+  "size_bytes": 1389221
 }
