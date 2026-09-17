@@ -1190,23 +1190,6 @@
       "publish_time": "2026-08-21"
     },
     {
-      "capabilities": {},
-      "context_length": 1000000,
-      "created": 1787304413,
-      "display_name": "DeepSeek: DeepSeek V4 Flash Vision Exp",
-      "id": "deepseek/deepseek-v4-flash-vision-exp",
-      "input_modalities": [
-        "image",
-        "text"
-      ],
-      "object": "model",
-      "output_modalities": [
-        "text"
-      ],
-      "owned_by": "deepseek",
-      "publish_time": "2026-08-21"
-    },
-    {
       "capabilities": {
         "reasoning": true
       },
@@ -2413,12 +2396,17 @@
           {
             "currency": "USD",
             "unit": "perSecond",
-            "value": 0.074
+            "value": 0.038
           },
           {
             "currency": "USD",
             "unit": "perSecond",
-            "value": 0.1185
+            "value": 0.08
+          },
+          {
+            "currency": "USD",
+            "unit": "perSecond",
+            "value": 0.13
           }
         ]
       },
