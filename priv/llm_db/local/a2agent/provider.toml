@@ -14,4 +14,3 @@ env = ["A2AGENT_API_KEY"]
 
 [runtime.execution]
 text = "openai_chat_compatible"
-object = "openai_chat_compatible"
