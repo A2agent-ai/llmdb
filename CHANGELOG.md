@@ -7,6 +7,17 @@ This project uses [Calendar Versioning](https://calver.org/) with the format `YY
 
 <!-- changelog -->
 
+## [2026.9.3](https://github.com/agentjido/llmdb/compare/2026.9.2...2026.9.3) (2026-09-17)
+
+
+
+
+### Features:
+
+* catalog: add TypeSafe Jev evaluation models (#327) by mikehostetler
+
+* catalog: add TypeSafe Jev evaluation models by mikehostetler
+
 ## [2026.9.2](https://github.com/agentjido/llmdb/compare/2026.9.1...2026.9.2) (2026-09-15)
 
 
