@@ -184,6 +184,11 @@
           "resolution": "2k"
         },
         {
+          "price_per_image": 500000000,
+          "quality": "low",
+          "resolution": "1.5k"
+        },
+        {
           "price_per_image": 600000000,
           "quality": "medium",
           "resolution": "1k"
@@ -192,6 +197,11 @@
           "price_per_image": 800000000,
           "quality": "medium",
           "resolution": "2k"
+        },
+        {
+          "price_per_image": 700000000,
+          "quality": "medium",
+          "resolution": "1.5k"
         }
       ]
     },

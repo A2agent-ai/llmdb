@@ -5,11 +5,11 @@ doc_url = "https://a2agent.me/models/qwen3.8-flash"
 [limits]
 context = 1000000
 
-# Public catalog rates as of 2026-09-18, USD per million tokens.
+# Public catalog rates as of 2026-09-19, USD per million tokens.
 # https://a2agent.me/api/v1/models/catalog-pricing
 [cost]
-input = 0.10134
-output = 0.3420225
+input = 0.135
+output = 0.423
 
 [modalities]
 input = ["text", "image"]

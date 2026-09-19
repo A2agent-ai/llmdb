@@ -4,6 +4,57 @@
       "capabilities": {
         "reasoning": true
       },
+      "context_length": 1000000,
+      "created": 1789710951,
+      "display_name": "Z.AI: GLM 5.3 FlashX",
+      "id": "z-ai/glm-5.3-flashx",
+      "input_modalities": [
+        "text",
+        "image",
+        "video",
+        "file"
+      ],
+      "object": "model",
+      "output_modalities": [
+        "text"
+      ],
+      "owned_by": "z-ai",
+      "pricings": {
+        "completion": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 1.25
+          }
+        ],
+        "input_cache_read": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.075
+          }
+        ],
+        "prompt": [
+          {
+            "currency": "USD",
+            "unit": "perMTokens",
+            "value": 0.375
+          }
+        ],
+        "web_search": [
+          {
+            "currency": "USD",
+            "unit": "perCount",
+            "value": 0.01
+          }
+        ]
+      },
+      "publish_time": "2026-09-18"
+    },
+    {
+      "capabilities": {
+        "reasoning": true
+      },
       "context_length": 262144,
       "created": 1789455910,
       "display_name": "inclusionAI: Ling-3.0-flash-VL",
@@ -559,6 +610,26 @@
           }
         ]
       },
+      "publish_time": "2026-09-04"
+    },
+    {
+      "capabilities": {
+        "reasoning": false
+      },
+      "context_length": 2000,
+      "created": 1789648400,
+      "display_name": "inclusionAI: LLaDA-Image-Turbo",
+      "id": "inclusionai/llada-image-turbo",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "object": "model",
+      "output_modalities": [
+        "image"
+      ],
+      "owned_by": "inclusionai",
+      "pricings": {},
       "publish_time": "2026-09-04"
     },
     {
@@ -8588,24 +8659,6 @@
         ]
       },
       "publish_time": "2026-02-02"
-    },
-    {
-      "capabilities": {},
-      "context_length": 262144,
-      "created": 1769493282,
-      "display_name": "MoonshotAI: Kimi K2.5",
-      "id": "moonshotai/kimi-k2.5",
-      "input_modalities": [
-        "text",
-        "image",
-        "video"
-      ],
-      "object": "model",
-      "output_modalities": [
-        "text"
-      ],
-      "owned_by": "moonshotai",
-      "publish_time": "2026-01-27"
     },
     {
       "capabilities": {

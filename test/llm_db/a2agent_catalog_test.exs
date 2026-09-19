@@ -34,8 +34,8 @@ defmodule LLMDB.A2AgentCatalogTest do
     end
 
     assert {:ok, flash} = LLMDB.model("a2agent:qwen3.8-flash")
-    assert flash.cost.input == 0.10134
-    assert flash.cost.output == 0.3420225
+    assert flash.cost.input == 0.135
+    assert flash.cost.output == 0.423
 
     assert {:ok, minimax} = LLMDB.model("a2agent:minimax-m3")
     assert minimax.modalities.input == [:text]
