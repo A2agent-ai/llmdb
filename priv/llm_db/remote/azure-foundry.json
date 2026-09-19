@@ -172143,7 +172143,7 @@
           "mr",
           "te"
         ],
-        "azureOpenAIVersion": "2026-09-09",
+        "azureOpenAIVersion": "2026-09-10",
         "deploymentTypes": [
           "batch-enabled"
         ],
@@ -172212,9 +172212,9 @@
         "trainingDataDate": "April 2026"
       }
     },
-    "assetId": "azureml://registries/azure-openai/models/gpt-live-1/versions/2026-09-09",
+    "assetId": "azureml://registries/azure-openai/models/gpt-live-1/versions/2026-09-10",
     "entityContainerId": "aec5c191-e78a-4e15-ad43-f48fa6ceeefa",
-    "entityId": "azureml://registries/aec5c191-e78a-4e15-ad43-f48fa6ceeefa/type/models/objectId/gpt-live-1/version/2026-09-09",
+    "entityId": "azureml://registries/aec5c191-e78a-4e15-ad43-f48fa6ceeefa/type/models/objectId/gpt-live-1/version/2026-09-10",
     "entityObjectId": "gpt-live-1",
     "entityResourceName": "azure-openai",
     "fragmentId": null,
@@ -172224,7 +172224,7 @@
     "kind": "Versioned",
     "properties": {
       "allowedDeploymentTemplates": [],
-      "alphanumericVersion": "2026-09-09",
+      "alphanumericVersion": "2026-09-10",
       "artifactProfile": null,
       "creationContext": {
         "createdBy": {
@@ -172233,12 +172233,12 @@
           "userPrincipalName": null,
           "userTenantId": "00000000-0000-0000-0000-000000000000"
         },
-        "createdTime": "2026-09-17T00:18:51.6282082+00:00",
+        "createdTime": "2026-09-17T19:57:31.5351917+00:00",
         "creationSource": null
       },
       "derivedModelIds": null,
       "experimentName": null,
-      "id": "gpt-live-1:2026-09-09",
+      "id": "gpt-live-1:2026-09-10",
       "intellectualProperty": {
         "publisher": null
       },
@@ -172249,7 +172249,7 @@
       "modelFormat": "CUSTOM",
       "modelFramework": "Custom",
       "modelFrameworkVersion": null,
-      "modifiedTime": "2026-09-17T00:18:49.0641382Z",
+      "modifiedTime": "2026-09-17T19:57:29.4239496Z",
       "name": "gpt-live-1",
       "orginAssetId": null,
       "parentModelId": null,
@@ -172262,7 +172262,7 @@
       "url": null,
       "userProperties": {
         "AzureOpenAI-ModelName": "gpt-live-1",
-        "AzureOpenAI-Version": "2026-09-09"
+        "AzureOpenAI-Version": "2026-09-10"
       },
       "variantInfo": null,
       "version": 0,
@@ -172278,6 +172278,6 @@
       "popularity": 1.0,
       "totalCount": 0
     },
-    "version": "2026-09-09"
+    "version": "2026-09-10"
   }
 ]
